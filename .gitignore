@@ -1,0 +1,43 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Maven build output
+target/
+
+# IDE specific files
+*.iml
+*.idea/
+*.project
+*.classpath
+*.settings/
+*.vscode/
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Maven wrapper files
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# Local configuration files
+*.local
+*.env
+
+# Other files
+*.jar
+*.war
+*.ear
+*.tar.gz
+*.zip
+
+# Database files
+*.db
+*.sqlite
+
+# JUnit 5 test results
+test-results/
