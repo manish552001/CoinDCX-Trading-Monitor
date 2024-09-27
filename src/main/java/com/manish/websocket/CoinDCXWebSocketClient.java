@@ -2,9 +2,12 @@ package com.manish.websocket;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+
 public class CoinDCXWebSocketClient extends WebSocketClient {
 
     public CoinDCXWebSocketClient(String url) throws URISyntaxException {
@@ -26,6 +29,17 @@ public class CoinDCXWebSocketClient extends WebSocketClient {
     @Override
     public void onMessage(String message) {
         System.out.println("Received message: " + message);
+        // Create an ObjectMapper instance
+        ObjectMapper objectMapper = new ObjectMapper();
+        
+        // Assuming the message is in JSON format and contains the price
+        try {
+            JsonNode jsonNode = objectMapper.readTree(message); // Use the instance here
+            double price = jsonNode.get("price").asDouble();
+            TradingApp.updateMarketPrice(price); // Call a method in TradingApp to update the price
+        } catch (Exception e) {
+            System.err.println("Error parsing message: " + e.getMessage());
+        }
     }
 
     @Override
